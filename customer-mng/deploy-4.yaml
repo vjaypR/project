@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: custom-mngmt
+spec:
+  minReadySeconds: 5
+  replicas: 1
+  selector:
+    matchLabels:
+      app: custom
+  template:
+    metadata:
+      labels:
+        app: custom
+    spec:
+      containers:
+      - name: customermanagementapi
+        image: pitstop/customermanagementapi:1.0
+        ports:
+          - containerPort: 5100
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Production 
+       
+        
+        
+         
+
+            

@@ -1,0 +1,17 @@
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: workshopmanagementapi
+spec:
+  selector:
+    app: work
+  type: ClusterIP
+  ports:
+    - port: 5200
+      targetPort: 5200
+     
+
+  
+
+ 

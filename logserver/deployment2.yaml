@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log-server
+spec:
+  minReadySeconds: 5
+  replicas: 1
+  selector:
+    matchLabels:
+      app: log 
+  template:
+    metadata:
+      labels:
+        app: log
+    spec:
+      containers:
+      - name: logserver
+        image: datalust/seq:latest
+        ports:
+          - containerPort: 5341
+          - containerPort: 80
+        env:
+        - name: ACCEPT_EULA
+          value: "Y" 
+        
+        

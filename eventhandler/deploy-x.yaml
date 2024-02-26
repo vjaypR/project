@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workshopmanagementeventhandler
+spec:
+  minReadySeconds: 5
+  replicas: 1
+  selector:
+    matchLabels:
+      app: event 
+  template:
+    metadata:
+      labels:
+        app: event
+    spec:
+      containers:
+      - name: workshopmanagementeventhandler
+        image: pitstop/workshopmanagementeventhandler:1.0
+        env:
+        - name: DOTNET_ENVIRONMENT
+          value: Production
+        resources:
+          limits: 
+            cpu: "2000m"
+            memory: "2Gi"
+          requests:
+            cpu: "1000m"
+            memory: "1024Mi"
+       
+        
+        
+         
+
+            
