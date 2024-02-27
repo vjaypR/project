@@ -325,7 +325,7 @@ spec:
         app: work
     spec:
       containers:
-      - name: workshopmanagementapi:1.0
+      - name: workshopmanagementapi
         image: pitstop/workshopmanagementapi:1.0
         ports:
           - containerPort: 5200
@@ -509,6 +509,44 @@ spec:
     - port: 7005
       targetPort: 7005
       nodePort: 31542
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+spec:
+  minReadySeconds: 5
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp 
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp
+        image: pitstop/webapp:1.0
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Production
+        ports:
+          - containerPort: 7005
+        resources:
+          limits: 
+            cpu: "2000m"
+            memory: "2Gi"
+          requests:
+            cpu: "1000m"
+            memory: "1024Mi"
+       
+        
+        
+         
+
+            
+
 
   
 
