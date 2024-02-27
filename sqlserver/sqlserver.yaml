@@ -83,7 +83,7 @@ spec:
   metrics:
   - type: Resource
     resource:
-      name: cpu
+      app: sql
       target:
         type: Utilization
         averageUtilization: 50
