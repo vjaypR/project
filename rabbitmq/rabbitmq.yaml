@@ -1,0 +1,72 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata: 
+  name: rabbitmq
+spec:
+  minReadySeconds: 5
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbit
+  serviceName: rabbitmq
+  template:
+    metadata:
+      labels:
+        app: rabbit
+    spec:
+      containers:
+        - name: rabbitmq
+          image: rabbitmq:3-management-alpine
+          env:
+            - name: RABBITMQ_CONFIG_FILE
+              valueFrom:
+                configMapKeyRef:
+                  name: rabbitmq.conf
+                  key: RABBITMQ_CONFIG_FILE 
+          ports:
+            - containerPort: 15672
+            - containerPort: 5672
+          volumeMounts:
+            - name: rabbitmqdata
+              mountPath: /var/lib/rabbitmq:/etc/pitstop/
+              readOnly: false
+      volumes: 
+        - name: rabbitmqdata
+          configMap: 
+            name: rabbitmq.conf
+  volumeClaimTemplates:
+    - metadata:
+        name: rabbitmqdata
+      spec:
+        resources:
+          requests:
+            storage: "4Gi"
+        storageClassName: managed-csi
+        accessModes:
+          - ReadWriteOnce
+    
+
+---
+apiVersion: v1 
+kind: ConfigMap
+metadata:
+  name: rabbitmq.conf
+data:
+  RABBITMQ_CONFIG_FILE: /etc/pitstop/rabbitmq.conf
+---
+apiVersion: v1 
+kind: Service 
+metadata:
+  name: rabbitmq
+spec:
+  selector:
+    app: rabbit
+  type: ClusterIP
+  ports:
+    - name: rabbit-1
+      port: 15672 
+      targetPort: 15672
+    - name: rabbit-2
+      port: 5672
+      targetPort: 5672
