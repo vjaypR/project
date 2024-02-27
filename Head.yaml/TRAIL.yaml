@@ -509,12 +509,7 @@ spec:
     - port: 7005
       targetPort: 7005
       nodePort: 31542
----
-volumes:
-  sqlserverdata:
-    external: true
-  rabbitmqdata:
-    external: true
+
   
 
 
