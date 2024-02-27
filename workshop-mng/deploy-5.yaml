@@ -22,13 +22,6 @@ spec:
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: Production
-        resources:
-          limits: 
-            cpu: "2000m"
-            memory: "2Gi"
-          requests:
-            cpu: "1000m"
-            memory: "1024Mi"
        
         
         
