@@ -65,6 +65,6 @@ spec:
   type: NodePort
   ports:
     - name: rabbit-1
-      port: 15672 
-      targetPort: 15672
-      nodePort: 31212
+      port: 5672 
+      targetPort: 5672
+      nodePort: 30000
