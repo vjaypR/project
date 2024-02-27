@@ -135,7 +135,7 @@ spec:
       spec:
         resources:
           requests:
-            storage: "4Gi"
+            storage: "6Gi"
         storageClassName: managed-csi
         accessModes:
           - ReadWriteOnce
