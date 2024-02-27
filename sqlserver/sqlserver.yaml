@@ -9,7 +9,7 @@ data:
   SA_PASSWORD: 8jkGh47hnDw89Haq8LN2
 ---
 apiVersion: apps/v1
-kind: StatefulSet
+kind: deployment 
 metadata: 
   name: sqlserver
 spec:
@@ -54,13 +54,6 @@ spec:
         - name: sqlserverdata
           configMap: 
             name: sq-conf
-  volumeClaimTemplates:
-    - metadata:
-        name: sqlserverdata
-      spec:
-        storageClassName: managed-csi
-        accessModes:
-          - ReadWriteOnce
 
 ---
 apiVersion: v1 
@@ -75,6 +68,26 @@ spec:
     - port: 1434
       targetPort: 1433
       nodePort: 31111
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: sqlserver
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    app: sql
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+
     
        
 
