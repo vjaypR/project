@@ -54,8 +54,7 @@ spec:
       volumes: 
         - name: sqlserverdata
           emptyDir: {}
-          configMap: 
-            name: sq-conf
+          
  
 
 ---
