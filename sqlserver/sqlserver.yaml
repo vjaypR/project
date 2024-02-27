@@ -55,16 +55,7 @@ spec:
         - name: sqlserverdata
           configMap: 
             name: sq-conf
-  volumeClaimTemplates:
-    - metadata:
-        name: sqlserverdata
-      spec:
-        resources:
-          requests:
-            storage: "4Gi"
-        storageClassName: managed-csi
-        accessModes:
-          - ReadWriteOnce
+ 
 
 ---
 apiVersion: v1 
