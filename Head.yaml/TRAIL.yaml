@@ -241,10 +241,6 @@ spec:
         image: pitstop/vehiclemanagementapi:1.0
         ports:
           - containerPort: 5000
-        resources:
-          requests:
-            cpu: "512m"
-            memory: "1024Mi"
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: Production 
@@ -321,13 +317,7 @@ spec:
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: Production
-        resources:
-          limits: 
-            cpu: "2000m"
-            memory: "2Gi"
-          requests:
-            cpu: "1000m"
-            memory: "1024Mi"
+  
 --- 
 apiVersion: v1
 kind: Service
@@ -362,13 +352,7 @@ spec:
         env:
         - name: DOTNET_ENVIRONMENT
           value: Production
-        resources:
-          limits: 
-            cpu: "2000m"
-            memory: "2Gi"
-          requests:
-            cpu: "1000m"
-            memory: "1024Mi"
+        
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -391,13 +375,7 @@ spec:
         env:
         - name: DOTNET_ENVIRONMENT
           value: Production
-        resources:
-          limits: 
-            cpu: "2000m"
-            memory: "2Gi"
-          requests:
-            cpu: "1000m"
-            memory: "1024Mi"
+        
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -420,13 +398,7 @@ spec:
         env:
         - name: DOTNET_ENVIRONMENT
           value: Production
-        resources:
-          limits: 
-            cpu: "2000m"
-            memory: "2Gi"
-          requests:
-            cpu: "1000m"
-            memory: "1024Mi"
+       
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -449,13 +421,7 @@ spec:
         env:
         - name: DOTNET_ENVIRONMENT
           value: Production
-        resources:
-          limits: 
-            cpu: "2000m"
-            memory: "2Gi"
-          requests:
-            cpu: "1000m"
-            memory: "1024Mi"
+        
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -478,13 +444,7 @@ spec:
         env:
         - name: DOTNET_ENVIRONMENT
           value: Production
-        resources:
-          limits: 
-            cpu: "2000m"
-            memory: "2Gi"
-          requests:
-            cpu: "1000m"
-            memory: "1024Mi"
+        
 ---
 apiVersion: v1
 kind: Service
@@ -522,13 +482,7 @@ spec:
           value: Production
         ports:
           - containerPort: 7005
-        resources:
-          limits: 
-            cpu: "2000m"
-            memory: "2Gi"
-          requests:
-            cpu: "1000m"
-            memory: "1024Mi"
+        
        
         
         
