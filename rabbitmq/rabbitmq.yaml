@@ -67,4 +67,7 @@ spec:
     - name: rabbit-1
       port: 5672 
       targetPort: 5672
-      nodePort: 30000
+      nodePort: 30001
+    - name: rabbit-2
+      port: 5672
+      targetPort: 5672
